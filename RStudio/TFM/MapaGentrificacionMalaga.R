@@ -42,8 +42,12 @@ ui <- fluidPage(
     sidebarPanel(
       # Aquí puedes añadir elementos de entrada como selectores, botones, etc.
       selectInput("date", "Selecciona Año:", choices = c(2011,2021)),
-      selectInput("variable", "Selecciona variable de gentrificación:", choices = c("SES","RANK","Predicted_SES"))
-    ),
+      selectInput("variable", "Selecciona Variable:", choices = c("SES","RANK","Predicted_SES","Predicted_RANK")),
+      helpText(HTML("<strong>SES</strong>: Puntuación de gentrificación 'Socio-Economic Status'"),tags$br(),
+               HTML("<strong>RANK</strong>: Ranking en función de la puntuación de gentrificación"),tags$br(),
+               HTML("<strong>Predicted_SES</strong>: Predicción de SES realizada por un modelo de aprendizaje automático"),tags$br(),
+               HTML("<strong>Predicted_RANK</strong>: RANK a partir de la predicción de SES"),tags$br())
+      ),
     mainPanel(
       # Aquí puedes añadir elementos de salida como gráficos, tablas, texto, etc.
       leafletOutput(outputId = "map", height = "500px")
@@ -65,15 +69,24 @@ server <- function(input, output) {
     print(names(data_for_map))
     print(names(secciones))
     secciones$valor <- secciones %>% left_join(data_for_map, by = "NUMSECCENS") %>% .$valor
-    pal <- if (input$variable == "RANK") {
+    secciones$SES <- secciones %>% left_join(data_for_map, by = "NUMSECCENS") %>% .$SES
+    secciones$RANK <- secciones %>% left_join(data_for_map, by = "NUMSECCENS") %>% .$RANK
+    secciones$Predicted_SES <- secciones %>% left_join(data_for_map, by = "NUMSECCENS") %>% .$Predicted_SES
+    secciones$Predicted_RANK <- secciones %>% left_join(data_for_map, by = "NUMSECCENS") %>% .$Predicted_RANK
+    pal <- if (input$variable == "RANK" || input$variable == "Predicted_RANK") {
       colorNumeric(palette = "YlOrRd", domain = data_for_map$valor, na.color = "#FFFFFF")
     } else {
       colorNumeric(palette = "plasma", domain = data_for_map$valor, na.color = "#FFFFFF")
     }
-    leaflet() %>%
-      addTiles() %>%
-      addPolygons(data = secciones, fillColor = ~pal(valor), weight = 1, color = "#000000", fillOpacity = 0.5) %>%
-      addLegend(pal = pal, values = secciones$valor, title = input$variable, position = "bottomright")
+      leaflet() %>%
+        addTiles() %>%
+        addPolygons(data = secciones, fillColor = ~pal(valor), weight = 1, color = "#000000", fillOpacity = 0.5,
+                    popup = ~paste("<strong>Año:</strong>", input$date, "<br>",
+                                   "<strong>Sección:</strong>", secciones$NUMSECCENS, "<br>",
+                                   "SES:", secciones$SES, "<br>", "RANK:",secciones$RANK, "<br>",
+                                   "Predicted_SES:", secciones$Predicted_SES, "<br>",
+                                   "Predicted_RANK:", secciones$Predicted_RANK, "<br>")) %>%
+        addLegend(pal = pal, values = secciones$valor, title = input$variable, position = "bottomright")
   })
 }
 
