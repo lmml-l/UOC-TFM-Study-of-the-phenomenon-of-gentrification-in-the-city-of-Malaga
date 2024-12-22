@@ -1,0 +1,1 @@
+Sólo se muestra el valor de los cruces con 5 unidades muestrales o más, pudiendo en algún caso omitirse algún elemento territorial. Las celdas marcadas con * tienen menos de 5 unidades muestrales

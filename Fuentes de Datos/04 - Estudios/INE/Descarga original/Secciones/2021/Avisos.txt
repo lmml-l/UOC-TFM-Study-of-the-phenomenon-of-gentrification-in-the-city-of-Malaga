@@ -1,0 +1,2 @@
+La información de alguna sección censal ha sido suprimida para proteger el secreto estadístico.
+Para garantizar el secreto estadístico todos los datos están redondeados aleatoriamente a múltiplos de tres

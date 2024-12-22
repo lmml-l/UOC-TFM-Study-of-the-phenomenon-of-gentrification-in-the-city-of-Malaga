@@ -1,0 +1,5 @@
+Sólo se muestra el valor de los cruces con 5 unidades muestrales o más, pudiendo en algún caso omitirse algún elemento territorial. Las celdas marcadas con * tienen menos de 5 unidades muestrales
+
+Las celdas marcadas con * pueden contener errores elevados de muestreo.
+
+La información de algún distrito ha sido suprimida para proteger el secreto estadístico. Para ampliar la información de los distritos suprimidos, investigando los cruces con 5 unidades muestrales o más, pulse aquí

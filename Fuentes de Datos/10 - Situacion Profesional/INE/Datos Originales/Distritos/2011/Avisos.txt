@@ -1,0 +1,1 @@
+Las celdas marcadas con * pueden contener errores elevados de muestreo.

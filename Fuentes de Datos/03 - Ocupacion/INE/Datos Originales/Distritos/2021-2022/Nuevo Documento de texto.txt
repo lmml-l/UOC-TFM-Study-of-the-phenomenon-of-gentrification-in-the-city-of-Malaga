@@ -1,0 +1,4 @@
+Para garantizar la preservación del secreto estadístico las ocupaciones militares y de guardias civiles han sido recodificadas.
+
+
+Para garantizar el secreto estadístico todos los datos están redondeados aleatoriamente a múltiplos de tres.

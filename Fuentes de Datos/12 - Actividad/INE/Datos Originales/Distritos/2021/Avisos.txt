@@ -1,0 +1,1 @@
+Para garantizar el secreto estadístico todos los datos están redondeados aleatoriamente a múltiplos de tres
