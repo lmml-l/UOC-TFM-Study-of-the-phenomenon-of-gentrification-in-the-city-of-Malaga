@@ -6,3 +6,5 @@ En el siguiente repositorio se encuentran:
 - Los scripts de R que generan la herramienta de visualizacion interactiva de los datos
 - Los ficheros originales descargados (Fuentes de Datos)
 - Los ficheros con los que se ha trabajado (WorkStation)
+
+La visualización interactiva está publicada en: https://lmml.shinyapps.io/Malaga-Gentrificacion/
